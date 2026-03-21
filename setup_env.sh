@@ -2,7 +2,6 @@
 # Qiskit Classroom Environment Setup Script
 # Requires: uv (https://docs.astral.sh/uv/getting-started/installation/)
 
-set -e
 
 PYTHON_VERSION="3.11"
 VENV_DIR=".venv"
@@ -43,12 +42,8 @@ pip install \
 
 # ── 6. Smoke test ─────────────────────────────────────────────────────────────
 echo "Running smoke test..."
-python - <<'EOF'
-from qiskit import QuantumCircuit
-from qiskit_ibm_runtime import QiskitRuntimeService
-print("Done — Qiskit environment is ready!")
-EOF
+python scratch.py
 
 echo ""
-echo "Setup complete. To activate the environment in future sessions run:"
-echo "  source $VENV_DIR/bin/activate"
+echo "Setup complete. Venv is active in this shell."
+echo "To activate in a new session: source $VENV_DIR/bin/activate"

@@ -26,12 +26,9 @@ uv venv -p $PYTHON_VERSION "$VENV_DIR"
 # shellcheck disable=SC1091
 source "$VENV_DIR/bin/activate"
 
-# ── 5. Install pip then packages ─────────────────────────────────────────────
-echo "Installing pip..."
-uv pip install pip
-
+# ── 5. Install packages into venv ────────────────────────────────────────────
 echo "Installing Qiskit packages..."
-pip install \
+uv pip install --python "$VENV_DIR/bin/python" \
     'qiskit>=2.1.0' \
     'qiskit-ibm-runtime>=0.40.1' \
     'qiskit-aer>=0.17.0' \
@@ -42,7 +39,7 @@ pip install \
 
 # ── 6. Smoke test ─────────────────────────────────────────────────────────────
 echo "Running smoke test..."
-python scratch.py
+"$VENV_DIR/bin/python" scratch.py
 
 echo ""
 echo "Setup complete. Venv is active in this shell."
